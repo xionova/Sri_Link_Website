@@ -50,7 +50,7 @@ export default function Home() {
   const totalBoxes = 15;
   const [flipped, setFlipped] = useState<boolean[]>(Array(totalBoxes).fill(false));
 
-  // Typing effect
+  // Typing effect for header
   useEffect(() => {
     const currentWord = words[index].text;
 
@@ -78,7 +78,7 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, index]);
 
-  // Flip random cards
+  // Random flip interval for grid cards
   useEffect(() => {
     const interval = setInterval(() => {
       setFlipped((prev) => {
@@ -137,9 +137,10 @@ export default function Home() {
         {Array.from({ length: totalBoxes }).map((_, i) => (
           <div key={i} className="flip-card w-full h-40 relative">
             <div
-              className={`flip-inner w-full h-full relative transform transition-transform duration-700 ${
-                flipped[i] ? 'flipped' : ''
-              }`}
+              className={`flip-inner w-full h-full relative transform transition-transform
+                duration-[900ms] ease-[cubic-bezier(0.4,0,0.2,1)]
+                ${flipped[i] ? 'flipped' : ''}
+              `}
             >
               {/* Front Side - Image */}
               <div className="flip-front absolute inset-0 bg-[url('/assets/designer.jpg')] bg-cover bg-center border-2 border-white rounded-lg shadow-lg"></div>
