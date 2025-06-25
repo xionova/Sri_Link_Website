@@ -5,7 +5,7 @@ import {
   Nunito, Playfair_Display, Roboto_Mono, Pacifico, Orbitron, Lora,
   Bebas_Neue, Raleway, Source_Serif_4, Merriweather, Quicksand
 } from 'next/font/google';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'; // or 'fa' for older Twitter icon
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 
 const nunito = Nunito({ subsets: ['latin'], weight: '400' });
 const playfair = Playfair_Display({ subsets: ['latin'], weight: '400' });
@@ -31,6 +31,12 @@ const words = [
   { text: 'musician', font: pacifico.className },
 ];
 
+const roles = [
+  'Designer', 'Photographer', 'Writer', 'Architect', 'Artist',
+  'Developer', 'Teacher', 'Chef', 'Editor', 'Musician',
+  'Marketer', 'Doctor', 'Engineer', 'Coach', 'Dancer'
+];
+
 export default function Home() {
   const [index, setIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -41,6 +47,10 @@ export default function Home() {
   const pauseBeforeDelete = 1000;
   const pauseBeforeType = 500;
 
+  const totalBoxes = 15;
+  const [flipped, setFlipped] = useState<boolean[]>(Array(totalBoxes).fill(false));
+
+  // Typing effect
   useEffect(() => {
     const currentWord = words[index].text;
 
@@ -68,9 +78,24 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, index]);
 
+  // Flip random cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlipped((prev) => {
+        const newFlips = [...prev];
+        const randomIndex = Math.floor(Math.random() * totalBoxes);
+        newFlips[randomIndex] = !newFlips[randomIndex];
+        return newFlips;
+      });
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
-      <section className={`p-5 text-white flex flex-col justify-between min-h-screen ${nunito.className} bg-cover bg-center transition-all duration-700`}
+      <section
+        className={`p-5 text-white flex flex-col justify-between min-h-screen ${nunito.className} bg-cover bg-center transition-all duration-700`}
         style={{ backgroundImage: "url('/assets/main.jpg')" }}
       >
         <div className="flex justify-between">
@@ -78,7 +103,7 @@ export default function Home() {
           <button className="py-2 px-4 bg-black rounded-lg font-bold">Sign in</button>
         </div>
 
-        <div className="">
+        <div>
           <p className="text-6xl sm:text-7xl">
             Find Your,&nbsp;
             <span
@@ -96,73 +121,36 @@ export default function Home() {
             <span className="absolute left-1 top-0 h-full w-1 bg-yellow-300"></span>
             <span className="absolute left-2 top-0 h-full w-1 bg-orange-500"></span>
             <span className="absolute left-3 top-0 h-full w-1 bg-green-700"></span>
-
-            Find Services — It's Free !
-            <img src="/assets/lotus.jpg" className='w-8' alt=""></img>
+            Find Services — It's Free!
+            <img src="/assets/lotus.jpg" className="w-8" alt="" />
           </button>
-          <div className='flex gap-2 text-3xl text-black justify-end'>
-            <FaFacebookF className='bg-white rounded pt-1' />
-            <FaInstagram className='bg-white rounded p-0.5' />
-            <FaLinkedinIn className='bg-white rounded p-0.5' />
-            <FaXTwitter className='bg-white rounded p-0.5' />
+          <div className="flex gap-2 text-3xl text-black justify-end mt-6">
+            <FaFacebookF className="bg-white rounded pt-1" />
+            <FaInstagram className="bg-white rounded p-0.5" />
+            <FaLinkedinIn className="bg-white rounded p-0.5" />
+            <FaXTwitter className="bg-white rounded p-0.5" />
           </div>
         </div>
       </section>
 
-      
-      <section className='grid min-h-screen grid-cols-5 bg-white text-black'>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        {/* //////// */}
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        {/* //////// */}
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
-        </div>
-      </section>
+      <section className="grid min-h-screen grid-cols-5 gap-4 p-4 bg-white">
+        {Array.from({ length: totalBoxes }).map((_, i) => (
+          <div key={i} className="flip-card w-full h-40 relative">
+            <div
+              className={`flip-inner w-full h-full relative transform transition-transform duration-700 ${
+                flipped[i] ? 'flipped' : ''
+              }`}
+            >
+              {/* Front Side - Image */}
+              <div className="flip-front absolute inset-0 bg-[url('/assets/designer.jpg')] bg-cover bg-center border-2 border-white rounded-lg shadow-lg"></div>
 
-
-      <section className='grid min-h-screen grid-cols-5 bg-white text-black'>
-
+              {/* Back Side - Text */}
+              <div className="flip-back absolute inset-0 bg-black text-white border-2 border-white rounded-lg shadow-lg flex items-center justify-center">
+                <p className="text-2xl font-bold">{roles[i % roles.length]}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </section>
     </>
   );
