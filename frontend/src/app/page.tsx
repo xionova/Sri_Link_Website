@@ -6,6 +6,7 @@ import {
   Bebas_Neue, Raleway, Source_Serif_4, Merriweather, Quicksand
 } from 'next/font/google';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'; // or 'fa' for older Twitter icon
+import { FaArrowAltCircleRight } from 'react-icons/fa';
 
 const nunito = Nunito({ subsets: ['latin'], weight: '400' });
 const playfair = Playfair_Display({ subsets: ['latin'], weight: '400' });
@@ -31,12 +32,6 @@ const words = [
   { text: 'musician', font: pacifico.className },
 ];
 
-const roles = [
-  'Designer', 'Photographer', 'Writer', 'Architect', 'Artist',
-  'Developer', 'Teacher', 'Chef', 'Editor', 'Musician',
-  'Marketer', 'Doctor', 'Engineer', 'Coach', 'Dancer'
-];
-
 export default function Home() {
   const [index, setIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -47,10 +42,6 @@ export default function Home() {
   const pauseBeforeDelete = 1000;
   const pauseBeforeType = 500;
 
-  const totalBoxes = 15;
-  const [flipped, setFlipped] = useState<boolean[]>(Array(totalBoxes).fill(false));
-
-  // Typing effect
   useEffect(() => {
     const currentWord = words[index].text;
 
@@ -78,31 +69,16 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, index]);
 
-  // Flip random cards
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFlipped((prev) => {
-        const newFlips = [...prev];
-        const randomIndex = Math.floor(Math.random() * totalBoxes);
-        newFlips[randomIndex] = !newFlips[randomIndex];
-        return newFlips;
-      });
-    }, 1500);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
       <section className={`p-5 text-white flex flex-col justify-between min-h-screen ${nunito.className} bg-cover bg-center transition-all duration-700`}
-        style={{ backgroundImage: "url('/assets/main.jpg')" }}
       >
         <div className="flex justify-between">
           <img src="/assets/logo.png" className="w-20" alt="logo" />
           <button className="py-2 px-4 bg-black rounded-lg font-bold">Sign in</button>
         </div>
 
-        <div>
+        <div className="">
           <p className="text-6xl sm:text-7xl">
             Find Your,&nbsp;
             <span
@@ -120,10 +96,11 @@ export default function Home() {
             <span className="absolute left-1 top-0 h-full w-1 bg-yellow-300"></span>
             <span className="absolute left-2 top-0 h-full w-1 bg-orange-500"></span>
             <span className="absolute left-3 top-0 h-full w-1 bg-green-700"></span>
-            Find Services — It's Free!
-            <img src="/assets/lotus.jpg" className="w-8" alt="" />
+
+            Find Services — It's Free !
+            <img src="/assets/lotus.jpg" className='w-8' alt=""></img>
           </button>
-          <div className='flex gap-2 text-3xl text-black justify-end'>
+          <div className='flex fixed right-10 bottom-5 gap-2 text-3xl text-black justify-end'>
             <FaFacebookF className='bg-white rounded pt-1' />
             <FaInstagram className='bg-white rounded p-0.5' />
             <FaLinkedinIn className='bg-white rounded p-0.5' />
@@ -132,59 +109,59 @@ export default function Home() {
         </div>
       </section>
 
-      
-      <section className='grid min-h-screen grid-cols-5 bg-white text-black'>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
+
+      <section className='grid min-h-screen grid-cols-5 bg-white  text-black'>
+        <div className='h-82 flex items-center justify-center'>
+          <p className={`${nunito.className} text-4xl font-black`}>if you're a</p>
         </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+          <p className='text-3xl font-bold text-white'>Architecture</p>
+        </div>
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+          <p className='text-3xl font-bold text-white'>3D Artist</p>
+        </div>
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+          <p className='text-3xl font-bold text-white'>Writer</p>
+        </div>
+        {/* //////// */}
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+          <p className='text-3xl font-bold text-white'>Psychologist</p>
+        </div>
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+          <p className='text-3xl font-bold text-white'>Photographer</p>
+        </div>
+        <div className='h-82 flex items-center justify-center'>
+          <p className={`px-5 ${nunito.className} text-4xl font-black`}>or offer any service, create your free portfolio on SriLink.</p>
+        </div>
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
         {/* //////// */}
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
+        <div className="h-82 bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
           <p className='text-3xl font-bold text-white'>Designer</p>
         </div>
-        {/* //////// */}
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className="bg-[url('/assets/designer.jpg')] bg-cover border-2 border-white bg-center flex items-center justify-center">
-          <p className='text-3xl font-bold text-white'>Designer</p>
-        </div>
-        <div className='flex items-center justify-center'>
-          <p>if you're a</p>
+        <div className='h-82 flex items-center'>
+          <p className={`px-5 ${nunito.className} text-4xl font-black`}>Start <br />getting <br />clients <br />today. <br /><FaArrowAltCircleRight /></p>
         </div>
       </section>
 
 
-      <section className='grid min-h-screen grid-cols-5 bg-white text-black'>
+      <section className='grid min-h-screen grid-cols-5 text-black'>
 
       </section>
     </>
