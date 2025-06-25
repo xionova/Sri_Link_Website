@@ -12,6 +12,7 @@ body {
   height: 100vh;
   color: var(--foreground);
 }
+
 .flip-card {
   perspective: 1000px;
 }
@@ -19,6 +20,9 @@ body {
 .flip-inner {
   transform-style: preserve-3d;
   position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .flip-front,
@@ -38,4 +42,13 @@ body {
   transform: rotateY(180deg);
 }
 
+.flip-inner:not(.flipped):hover {
+  transform: rotateY(180deg);
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-inner.flipped:hover {
+  transform: rotateY(0deg);
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
