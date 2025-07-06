@@ -104,10 +104,10 @@ export default function Home() {
             <FaArrowAltCircleDown className='text-4xl' />
           </div>
           <div className='flex fixed right-10 bottom-5 gap-1 text-3xl text-black justify-end'>
-            <FaFacebookF className='bg-white rounded pt-1' />
-            <FaInstagram className='bg-white rounded p-0.5' />
-            <FaLinkedinIn className='bg-white rounded p-0.5' />
-            <FaXTwitter className='bg-white rounded p-0.5' />
+            <FaFacebookF className='bg-white border rounded pt-1' />
+            <FaInstagram className='bg-white border rounded p-0.5' />
+            <FaLinkedinIn className='bg-white border rounded p-0.5' />
+            <FaXTwitter className='bg-white border rounded p-0.5' />
           </div>
         </div>
       </section>
